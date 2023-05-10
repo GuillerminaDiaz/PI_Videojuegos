@@ -1,0 +1,1 @@
+export const ALL_VIDEOGAMES= 'ALL_VIDEOGAMES';
