@@ -4,6 +4,9 @@ const { Genre } =require('../db');
 
 
 const postNewVideogame= async (name, description, platforms, image, release_date, rating, genre)=>{
+    const gameExist= await Videogame.findAll({where: {name}});
+     
+    if(gameExist.length>0) throw Error ('Videogame already exist');
     const newGame= await Videogame.create({
         name, 
         description, 

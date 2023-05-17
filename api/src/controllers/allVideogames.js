@@ -5,7 +5,7 @@ require('dotenv').config();
 const { API_KEY }= process.env;
 
 const dbVideogames= async ()=>{ 
-    const gamesdb= await Videogame.findAll({
+    let gamesdb= await Videogame.findAll({
         include:{
             model: Genre,
             attributes:['name'],
@@ -14,12 +14,23 @@ const dbVideogames= async ()=>{
               }
         }
     });
+    gamesdb= gamesdb.map(game=>{
+        return({ 
+            id:game.id,
+            name:game.name,
+            platforms:game.platforms,
+            image:game.image,
+            release_date:game.release_date,
+            created: game.created,
+            Genres: game.Genres.map((genre) => genre.name)
+        })
+    })
     return gamesdb;
 }
 const apiVideogames= async()=>{
     let allInfoGames=[];
     let i=1;
-    while(i<5){
+    while(i<6){
         let {data}= await axios(`https://api.rawg.io/api/games?key=${API_KEY}&page=${i}`);
         allInfoGames=[...allInfoGames,...data.results]; 
         i++;
@@ -30,9 +41,9 @@ const apiVideogames= async()=>{
             name: game.name,
             platforms: game.parent_platforms.map(platform=> platform.platform.name),
             image: game.background_image,
-            released_date:game.released,
+            release_date:game.released,
             rating: game.rating,
-            created: false,
+            created: 'false',
             Genres: game.genres.map(genre=> genre.name)
         });
         

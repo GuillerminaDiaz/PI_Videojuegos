@@ -9,13 +9,13 @@ const getVideogames= async (req, res)=>{
         const { search }= req.query;
         if(search){
             const videogameName= await getGameByName(search);
-            if(videogameName.length===0) throw Error('Videogame not found')
+            if(videogameName.length===0)throw Error('Videogame not found')
             return res.status(200).json(videogameName)
         }
         const games= await allVideogames();
         return res.status(200).json(games)
     } catch (error) {
-        return res.status(500).json({ error: error.message})
+        return res.status(400).json({ error: error.message})
     }
 };
 

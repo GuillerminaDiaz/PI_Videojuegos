@@ -6,14 +6,19 @@ import Detail from './components/Detail/Detail';
 import Form from './components/CreateGame/Form';
 import NavBar from './components/NavBar/NavBar';
 
+
+//import { useSelector } from 'react-redux';
+
 function App() {
   const location= useLocation();
-  return (
+  
+   return (
     <div className="App">
-      {location.pathname !== '/' && <NavBar/>}
+      {location.pathname!=='/' && <NavBar/>}
+
       <Routes>
         <Route path='/' element={<Landing/>}/>
-        <Route path='/home' element={<Home/>} />
+        <Route path='/home' element={<Home/>}/>
         <Route path='/detail/:idVideogame' element={<Detail/>} />
         <Route path='/createGame' element={<Form/>} />
       </Routes>

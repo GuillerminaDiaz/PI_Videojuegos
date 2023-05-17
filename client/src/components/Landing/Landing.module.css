@@ -1,0 +1,55 @@
+.div{
+    background-image: url('../../images/pngimg.com - fortnite_PNG167.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size:100% 100%; 
+    width:98vw;
+    height:99vh;
+    opacity: 0.7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.h1{
+    text-shadow: -2px -1px 18px rgba(255,255,255,0.6);
+    color:#ffffff;
+    font-size: 10rem;
+    opacity: 0.9;
+    
+}
+
+.btn {
+    color: #ffffff !important;
+    border-radius: 5rem;
+    width: 20rem;
+    height: 4rem;
+    font-size: 2rem;
+    font-weight: 600;
+    padding: 0.5em 1.2em;
+    background: none;
+    border: 2px solid;
+    border-color: #e1e1e1;
+    position: relative;
+  }
+  .btn:before {
+    border-radius: 5rem;
+    content:"";
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 0px;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: all 1s ease;
+  }
+  .btn:hover:before {
+    border-radius: 5rem;
+    width: 100%;
+    cursor: pointer;
+  }
+
+
+
+

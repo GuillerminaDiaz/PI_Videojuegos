@@ -7,7 +7,7 @@ const {API_KEY}= process.env;
 
 const getGameById = async (idVideogame)=>{
     if(isNaN(idVideogame)){
-        const gameFound= await Videogame.findByPk(idVideogame,  
+        let gameFound= await Videogame.findByPk(idVideogame,  
             {include:{
             model: Genre,
             attributes:['name'],
@@ -16,8 +16,18 @@ const getGameById = async (idVideogame)=>{
               }
         }});
         if(!gameFound) throw Error(`Videogame with id ${idVideogame} does not exist`);
-       
-        return gameFound;
+        const gameId= {
+            id:gameFound.id,
+            name:gameFound.name,
+            platforms:gameFound.platforms,
+            description: gameFound.description,
+            rating:gameFound.rating,
+            image:gameFound.image,
+            release_date:gameFound.release_date,
+            created: gameFound.created,
+            Genres: gameFound.Genres.map((genre) => genre.name)
+        }
+        return gameId
     };
 
     const { data } = await axios(`https://api.rawg.io/api/games/${idVideogame}?key=${API_KEY}`);
@@ -28,7 +38,7 @@ const getGameById = async (idVideogame)=>{
         name: data.name,
         image: data.background_image,
         platforms: data.parent_platforms.map(platform=> platform.platform.name),
-        description: data.description,
+        description: data.description_raw,
         release_date: data.released,
         rating: data.rating,
         created: false,
