@@ -6,7 +6,6 @@ const initialState={
     genres:[],
     renderVideogames:[],
     
-    
 };
 const reducer=(state= initialState, action)=>{
     switch (action.type) {
@@ -24,6 +23,7 @@ const reducer=(state= initialState, action)=>{
         case CLEAN_VIDEOGAMES:
             return{
                 ...state,
+                allVideogames:[],
                 genres:[],
                 renderVideogames:[]
             }
@@ -58,8 +58,8 @@ const reducer=(state= initialState, action)=>{
             }
         case FILTER_GENRE:
             const videogames= [...state.allVideogames]
-            const videogamesGenre= videogames.filter(game=> game.Genres.includes(action.payload))
             
+            const videogamesGenre=  videogames.filter(game=> game.Genres.includes(action.payload))
             return{
                 ...state,
                 renderVideogames:
@@ -69,12 +69,13 @@ const reducer=(state= initialState, action)=>{
             }
         case FILTER_ORIGIN:
             const games= [...state.allVideogames]
-            const videogamesOrigin=  games.filter(game=> game.created === action.payload)
+            const videogamesOrigin=  action.payload === 'created'? games.filter(game=> game.created) : games.filter(game=> !game.created)
+            console.log(videogamesOrigin);
             return{
                 ...state,
                 renderVideogames:
                 action.payload === 'allVideogames'
-                ?[...state.allVideogames] 
+                ? state.allVideogames
                 : videogamesOrigin
             }
         case ORDER_NAME:
@@ -92,17 +93,21 @@ const reducer=(state= initialState, action)=>{
                     })
             return{
                 ...state,
-                renderVideogames: sortGames
+                renderVideogames: action.payload==='no'
+                ? [...state.allVideogames] 
+                :sortGames
                     
             }
         case ORDER_RATING:
             const allVideogamesCopy= [...state.renderVideogames]
-            return{
-                ...state,
-                renderVideogames:
-                    action.payload=== 'A'?
+            const sortRate=action.payload=== 'A'?
                     allVideogamesCopy.sort((a,b)=> a.rating - b.rating) :
                     allVideogamesCopy.sort((a,b)=> b.rating - a.rating)
+            return{
+                ...state,
+                renderVideogames:action.payload === 'no'
+                ? [...state.allVideogames]
+                :sortRate   
             }
        
         default:

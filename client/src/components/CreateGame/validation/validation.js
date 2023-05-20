@@ -8,7 +8,6 @@ export const validate =(input, allVideogames=[])=>{
     
     const games= allVideogames.length!==0 && allVideogames.map((game)=> game.name.toLowerCase())
     
-    if(games && games.includes(input.name.toLowerCase())) errors.name= 'Videogame name not available';
     
     if(!input.description) errors.description  = 'Required field';
     if(input.platforms.length<1) errors.platforms  = 'Required field';
@@ -20,5 +19,6 @@ export const validate =(input, allVideogames=[])=>{
     if(input.rating<0) errors.rating = 'Rating invalid';
     if(input.genre.length<1) errors.genres = 'Required field';
     if(input.image==='') errors.image = 'Required field';
+    if(games && games.includes(input.name.toLowerCase())) errors.name= 'Videogame name not available';
     return errors;
 }

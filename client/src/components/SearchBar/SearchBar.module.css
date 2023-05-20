@@ -6,7 +6,7 @@
     
 }
 .div{
-    scale: 1.4;
+    scale: 1.5;
 }
 
 .btn{
@@ -17,6 +17,7 @@
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: small;
     transition: .5s;
+    scale: .9;
 }
 
 

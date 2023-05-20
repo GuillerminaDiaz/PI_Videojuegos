@@ -16,7 +16,7 @@ const Home=()=>{
     let numPages= Math.ceil(renderVideogames.length/15);
     
     let viewVideogames=  renderVideogames?.slice(from,to);
-   
+    console.log(renderVideogames);
 
   useEffect(()=>{
     dispatch(getAllGenres())
@@ -34,40 +34,43 @@ const Home=()=>{
     }
     
     const handleOrderName=(event)=>{
-        dispatch(orderAlphabetically(event.target.value))
+         dispatch(orderAlphabetically(event.target.value))
     };
 
     const handleOrderRating=(event)=>{
-        dispatch(orderRating(event.target.value))
+         dispatch(orderRating(event.target.value))
     };
 
    
     return(
         <div className={style.background}>
-            <select onChange={handleFilterOrigin}>
-                <option>Videogames Origin</option>
-                <option value="allVideogames">All Videogames</option>
-                <option value="true">My Videogames</option>
-                <option value="false">Web Videogames</option>
-            </select>
-            <select onChange={handleFilterGenre}>
-                <option>Genre</option>
-                <option value="allVideogames">All Videogames</option>
-                {
-                    genres?.map((genre, i)=> <option key={i} value={genre.name}>{genre.name}</option> )
-                }
-            </select>
-            <select onChange={handleOrderName}>
-                <option>Sort Alphabetically</option>
-                <option value="A">A-Z</option>
-                <option value="D">Z-A</option>
-            </select>
-            <select onChange={handleOrderRating}>
-                <option value="">Order by rating</option>
-                <option value="A">Lower rating to higher rating</option>
-                <option value="D">Higher rating to lower rating</option>
-            </select>
-            {viewVideogames && viewVideogames.map(game=>{
+            <div className={style.contentselect}>
+                <select onChange={handleFilterOrigin}>
+                    <option value="allVideogames">Videogames Origin</option>
+                    <option value="allVideogames">All Videogames</option>
+                    <option value="created">My Videogames</option>
+                    <option value="api">Web Videogames</option>
+                </select>
+                <select onChange={handleFilterGenre}>
+                    <option value="allVideogames">Genre</option>
+                    <option value="allVideogames">All Videogames</option>
+                    {
+                        genres?.map((genre, i)=> <option key={i} value={genre.name}>{genre.name}</option> )
+                    }
+                </select>
+                <select onChange={handleOrderName}>
+                    <option value="no">Sort Alphabetically</option>
+                    <option value="A">A-Z</option>
+                    <option value="D">Z-A</option>
+                </select>
+                <select onChange={handleOrderRating}>
+                    <option value="no">Order by rating</option>
+                    <option value="A">Lower rating to higher rating</option>
+                    <option value="D">Higher rating to lower rating</option>
+                </select>
+            </div>
+            <div className={style.divCards}>
+                {viewVideogames && viewVideogames.map(game=>{
                 return( 
                     <Card 
                     key={game.id}
@@ -79,6 +82,8 @@ const Home=()=>{
                     )
                 })
             }
+            </div>
+            
             {renderVideogames.length===0 && <Loading/>}
             {renderVideogames.length>0 &&  <Paginate numPages={renderVideogames.slice(0, numPages)}/>}
            

@@ -1,13 +1,13 @@
 import {  useEffect, useState } from "react";
 import { validate } from "./validation/validation";
 import { useDispatch, useSelector} from "react-redux";
-import { createVideogame, getAllGenres,cleanVideogames } from "../../redux/actions";
-//import UploadAndDisplayImage from "../ImageUpload/ImageUpload";
+import { createVideogame, getAllGenres,cleanVideogames, allVideogames } from "../../redux/actions";
+import style from './Form.module.css'
 
 const Form=()=>{
-    const [selectedImage, setSelectedImage]= useState(null);
-    const allVideogames= useSelector(state=> state.allVideogames)
-    console.log(allVideogames)
+    
+    const allVideogamesState= useSelector(state=> state.allVideogames)
+    
     const dispatch= useDispatch();
    
     const [checked, setChecked]= useState({
@@ -45,6 +45,7 @@ const Form=()=>{
     const [errors, setErrors]= useState({});
 
     useEffect(()=>{
+        dispatch(allVideogames())
         dispatch(getAllGenres())
         return ()=> dispatch(cleanVideogames())
     },[dispatch])
@@ -54,7 +55,7 @@ const Form=()=>{
             ? {...input, platforms: event.target.value.split(',')}
             :{...input, [event.target.name]: event.target.value}  
         )
-        setErrors(validate({...input, [event.target.name]: event.target.value}, allVideogames))
+        setErrors(validate({...input, [event.target.name]: event.target.value}, allVideogamesState))
 
     };
 
@@ -65,11 +66,11 @@ const Form=()=>{
                 [event.target.name]: true
             });
             setInput({
-                ...input,
+               ...input,
                 genre: [...input.genre, event.target.name]
             });
             setErrors(validate({
-                ...input,
+                ...input, 
                 genre: [...input.genre, event.target.name]
             }))
         }else{
@@ -78,35 +79,17 @@ const Form=()=>{
                 [event.target.name]: false
             });
             setInput({
-                ...input,
+               ...input,
                 genre: input.genre.filter(genre=> genre !==event.target.name)
             });
             setErrors(validate(
-                {...input,
+                {...input, 
                 genre: input.genre.filter(genre=> genre !==event.target.name)
             }))
         }
     };
     
-    const handleImage=(event)=>{
-        const url= URL.createObjectURL(event.target.files[0])
-        setSelectedImage(event.target.files[0])
-        setInput(
-            url!==''&& {
-            ...input,
-            image: url
-        })
-        setErrors(validate( url!==''&& {
-            ...input,
-            image: url
-        }))
-    }
-
-    const handleRemoveImg=()=>{
-        setSelectedImage('')
-        setInput({...input, image: ''})
-        setErrors(validate({...input, image: ''}))
-    };
+    
 
     const handleSubmit=(event)=>{
         event.preventDefault()
@@ -142,46 +125,63 @@ const Form=()=>{
             Educational: false,
             Card: false,
         })
-        setSelectedImage(null)
+        
         
         
     }
+    const nameGames= allVideogamesState.map((game)=> game.name.toLowerCase())
     return(
         <form onSubmit={handleSubmit}>
-           <div>
-            <label htmlFor="name">NAME</label>
-            <input type="text" name='name' onChange={handlechange} value={input.name}/>
+            <h1 className={style.title}>CREATE YOR VIDEOGAME</h1>
+           <div className={style.divInputs}>
+            <label htmlFor="name">Name:</label>
+            <input type="text" name='name' onChange={handlechange} value={input.name} placeholder="Name..."/>
             { errors.name && <span>{errors.name}</span> }
-           </div>
-            <hr />
-           <div>
-            <label htmlFor="description">DECRIPTION</label>
-            <textarea name="description" onChange={handlechange} value={input.description}></textarea>
-            { errors.description && <span>{errors.description}</span> }
-           </div>
-           <hr />
-           <div>
-            <label htmlFor="platforms">PLATFORMS</label>
-            <input type="text" name='platforms' onChange={handlechange} value={input.platforms}/>
+           </div >
+            
+           
+           <div className={style.divInputs}>
+            <label htmlFor="platforms">Platforms:</label>
+            <input type="text" name='platforms' onChange={handlechange} value={input.platforms} placeholder="Example: PC, Xbox,..."/>
             { errors.platforms && <span>{errors.platforms}</span> }
            </div>
            
-           <hr />
-           <div>
-            <label htmlFor="release_date">DATE</label>
-            <input type="date" max={Date.now()} name='release_date' onChange={handlechange} value={input.release_date}/>
+           
+           <div className={style.divInputs}>
+            <label htmlFor="release_date">Date Created:</label>
+            <input type="date" max={Date.now()} name='release_date' onChange={handlechange} value={input.release_date} placeholder="Date created..."/>
             { errors.release_date && <span>{errors.release_date}</span> }
             
            </div> 
-           <hr />
+           
 
-           <div>
-            <label htmlFor="rating">RATING</label>
-            <input type="number" name='rating' onChange={handlechange} value={input.rating}/>
+           <div className={style.divInputs}>
+            <label htmlFor="rating">Rating:</label>
+            <input type="number" name='rating' onChange={handlechange} value={input.rating} placeholder="Rating..."/>
             { errors.rating && <span>{errors.rating}</span> }
            </div>
 
-            <div>
+           <div className={style.divInputs}>
+            <label htmlFor="description">Description:</label>
+            <textarea name="description" onChange={handlechange} value={input.description} placeholder="Videogame description..."></textarea>
+            { errors.description && <span>{errors.description}</span> }
+           </div>
+
+           <div className={style.divInputs}>
+            <label htmlFor="image" className={style.txtcb}>Image:</label>
+            <input type="text" name='image' onChange={handlechange} value={input.image} placeholder="Image URL..."/>
+            {errors.image && <span className={style.errorcb}>{errors.image}</span> }
+           </div>
+           {input.image && <div>
+                <img
+                    alt="not found"
+                    width={"250px"}
+                    src={input.image}
+                />
+            </div>}
+
+                <label htmlFor="genre" className={style.txtcb}>Videogame genre/s:</label>
+            <div className={style.checkboxes}>
                 <label htmlFor="Action"><input name='Action' type="checkbox" checked={checked.Action} onChange={handleChangeBox}  />Action</label>
                 <label htmlFor="Indie"><input name='Indie' type="checkbox" checked={checked.Indie} onChange={handleChangeBox}  />Indie</label>
                 <label htmlFor="Adventure"><input name='Adventure' type="checkbox" checked={checked.Adventure} onChange={handleChangeBox}  />Adventure</label>
@@ -193,7 +193,6 @@ const Form=()=>{
                 <label htmlFor="Puzzle"><input name='Puzzle' type="checkbox" checked={checked.Puzzle} onChange={handleChangeBox}  />Puzzle</label>
                 <label htmlFor="Arcade"><input name='Arcade' type="checkbox" checked={checked.Arcade} onChange={handleChangeBox}  />Arcade</label>
                 <label htmlFor="Platformer"><input name='Platformer' type="checkbox" checked={checked.Platformer} onChange={handleChangeBox} />Platformer</label>
-                <label htmlFor="MassivelyMultiplayer"><input name='MassivelyMultiplayer' type="checkbox" checked={checked.MassivelyMultiplayer} onChange={handleChangeBox}  />Massively Multiplayer</label>
                 <label htmlFor="Racing"><input name='Racing' type="checkbox" checked={checked.Racing} onChange={handleChangeBox}  />Racing</label>
                 <label htmlFor="Sports"><input name='Sports' type="checkbox" checked={checked.Sports} onChange={handleChangeBox}  />Sports</label>
                 <label htmlFor="Fighting"><input name='Fighting' type="checkbox" checked={checked.Fighting} onChange={handleChangeBox} />Fighting</label>
@@ -201,28 +200,28 @@ const Form=()=>{
                 <label htmlFor="Family"><input name='Family' type="checkbox" checked={checked.Family} onChange={handleChangeBox}  />Family</label>
                 <label htmlFor="Educational"><input name='Educational' type="checkbox" checked={checked.Educational} onChange={handleChangeBox}  />Educational</label>
                 <label htmlFor="Card"><input name='Card' type="checkbox" checked={checked.Card} onChange={handleChangeBox}  />Card</label>
+                <label htmlFor="MassivelyMultiplayer" className={style.xllabel}><input name='MassivelyMultiplayer' type="checkbox" checked={checked.MassivelyMultiplayer} onChange={handleChangeBox}  />Massively Multiplayer</label>
             
-                {errors.genres&& <span>{errors.genres}</span> }
             
            </div>
+                {errors.genres&& <span className={style.errorcb}>{errors.genres}</span> }
            
-           <div>
-            <label htmlFor="image">IMAGE</label>
-            <input type="file" onChange={handleImage} />
-            {errors.image && <span>{errors.image}</span> }
-           </div>
-           {selectedImage && <div>
-          <img
-            alt="not found"
-            width={"250px"}
-            src={URL.createObjectURL(selectedImage)}
-          />
-          <br />
-          <button onClick={handleRemoveImg}>Remove</button>
-        </div>}
            
             
-           <button type="submit" disabled={Object.entries(errors).length > 0}>CREATE</button>
+           <button type="submit" className={style.btnCreate} disabled={
+            Object.entries(errors).length > 0 
+            || input.name === ''
+            || input.description ===''
+            || input.platforms.length===0
+            || input.release_date  ===''
+            || input.rating  ===''
+            || input.genre.length ===0
+            || input.image  ===''
+            || nameGames.includes(input.name)
+            }
+            >
+            CREATE
+            </button>
            
         </form>
     )

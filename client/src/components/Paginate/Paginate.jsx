@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { nextPage, prevPage,handleNumberPage } from "../../redux/actions";
+import style from './Paginate.module.css';
 
 const Paginate=({numPages})=>{
     const numPage= useSelector(state=> state.numPage);
@@ -14,15 +15,15 @@ const Paginate=({numPages})=>{
         dispatch(handleNumberPage(pageNum))
     };
     return(
-        <div>
-            {numPage !== 1 &&  <button onClick={prev}>Prev</button>}
+        <div className={style.divPag}>
+            {numPage !== 1 &&  <button onClick={prev} >Prev</button>}
             
             
             {
-                numPages.map((page, i)=> <button key={i} onClick={()=>number(i+1)}>{i+1}</button> )
+                numPages.map((page, i)=> <button key={i} onClick={()=>number(i+1)} className={style.btn}> {i+1} </button> )
             }
             
-            {numPage !== numPages.length && <button onClick={next}>Next</button>}
+            {numPage !== numPages.length && <button onClick={next} >Next</button>}
            
         </div>
     );

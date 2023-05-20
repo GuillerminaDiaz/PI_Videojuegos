@@ -4,3 +4,78 @@ body {
     width: 97vw;
     height: 97vh;
 }
+
+
+.contentselect select{
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+}
+
+.contentselect select::-ms-expand {
+    display: none;
+}
+  
+.contentselect{
+	max-width: 250px;
+	position: relative;
+    display: flex;
+    flex-direction: row;
+	justify-content: space-between;
+	gap: 10px;
+	
+}
+ 
+.contentselect select{
+	display: flex;
+	width:10rem;
+	text-align: center;
+	cursor: pointer;
+  	padding: 7px 10px;
+  	height: 42px;
+  	outline: 0; 
+  	border: 0; 
+	border-radius: 0;
+	background: #234b28;
+	color: #7b7b7b;
+	font-size: 1em;
+	color: rgb(131, 180, 125);
+	font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	border:2px solid #234b28;
+    border-radius: 12px;
+    position: relative;
+	left: 29vw;
+    transition: all 0.25s ease;
+	margin-top: 1rem;
+}
+ 
+.contentselect select:hover{
+	background: #0e2f1f;
+}
+
+.content-select i{
+	position: absolute;
+	right: 20px;
+	top: calc(50% - 13px);
+	width: 16px;
+	height: 16px;
+	display: block;
+	border-left:4px solid #2AC176;
+	border-bottom:4px solid #2AC176;
+	transform: rotate(-45deg); 
+	transition: all 0.25s ease;
+}
+ 
+.content-select:hover i{
+	margin-top: 3px;
+}
+
+.divCards{
+	display: grid;
+  	grid-template-columns: repeat(2, 1fr);
+  	gap: 20px;
+	justify-items: center;
+  	margin-left: 1rem;
+	margin-top: 3rem;
+	margin-bottom: 3rem;
+}

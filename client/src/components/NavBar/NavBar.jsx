@@ -23,7 +23,7 @@ const NavBar=()=>{
             {location.pathname!=='/createGame' && <SearchBar/>} 
             
         </div>
-        { location.pathname!=='/createGame' && <img src={img} alt="-" className={style.img}/>}
+        { location.pathname==='/home'  && <img src={img} alt="-" className={style.img}/>}
         </div>
         
         

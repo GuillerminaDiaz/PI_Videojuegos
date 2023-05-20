@@ -1,4 +1,57 @@
 .img{
-    width: 10rem;
-    height: 10rem;
+    width: 60vw;
+    height: 45vh;
+    margin: 2rem;
+    margin-top: 3rem;
+    box-shadow: -1px 11px 15px 6px rgba(0,0,0,0.75);
+    -webkit-box-shadow: -1px 11px 15px 6px rgba(0,0,0,0.75);
+    -moz-box-shadow: -1px 11px 15px 6px rgba(0,0,0,0.75);
+    position: relative;
+    
+}
+
+.divDetail{
+    border-radius: 10px;
+    background-color: #306938ad;
+    display: flex;
+    flex-direction: column;
+    width:fit-content;
+    height:fit-content;
+    position: relative;
+    left: 14vw;
+    align-items: center;
+    padding: 2rem;
+    margin-top: 2rem;
+    box-shadow: 0px 1px 9px 6px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0px 1px 9px 6px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 1px 9px 6px rgba(0,0,0,0.75);
+}
+
+.divText{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-right: 2rem;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: larger;
+    width: 50rem;
+
+}
+
+.h1{
+    align-self: center;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 2.5rem;
+    text-decoration: overline;
+    color: rgba(2, 41, 2, 0.977);
+    margin-top: 2.2rem;
+}
+
+
+.divLoad{
+    width: 98vw;
+    height: 98vh;
+    background-color:#1b1a1a;
+    border: none;
 }

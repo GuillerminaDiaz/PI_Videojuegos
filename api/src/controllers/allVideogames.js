@@ -43,7 +43,7 @@ const apiVideogames= async()=>{
             image: game.background_image,
             release_date:game.released,
             rating: game.rating,
-            created: 'false',
+            created: false,
             Genres: game.genres.map(genre=> genre.name)
         });
         

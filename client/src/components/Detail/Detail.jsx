@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from 'axios';
 import style from './Detail.module.css'
+import Loading from '../Loading/Loading'
 
 const Detail=()=>{
     const { idVideogame }= useParams();
@@ -22,17 +23,26 @@ const Detail=()=>{
     },[idVideogame])
     console.log(gameDetail)
     return(
-        <div>
-            <h1>DETAIL</h1>
-            <img src={gameDetail?.image} alt={gameDetail?.name} className={style.img}/>
-            <h2>Name: {gameDetail?.name}</h2>
-            <h3>Released: {gameDetail?.release_date}</h3>
-            <p>Description: {gameDetail?.description}</p>
-            <h3>Platforms: {gameDetail?.platforms?.join(', ')}</h3>
-            <h3>Rating: {gameDetail?.rating}</h3>
-            <h3>Genres: {gameDetail?.Genres?.join(', ')}</h3>
-            
-        </div>
+        <>
+            {Object.entries(gameDetail).length === 0 && <div className={style.divLoad}> <Loading/> </div>}
+            {Object.entries(gameDetail).length > 0 && 
+                <div className={style.divDetail}>
+                    <img src={gameDetail?.image} alt={gameDetail?.name} className={style.img}/>
+                    
+
+                    
+                    <div className={style.divText}>
+                    <h1 className={style.h1}>{gameDetail?.name}</h1>
+                    <h4>Description: </h4><p>{gameDetail?.description}</p>
+                    <p>Released: {gameDetail?.release_date}</p>
+                    <p>Platforms: {gameDetail?.platforms?.join(', ')}</p>
+                    <p>Rating: {gameDetail?.rating}</p>
+                    <p>Genres: {gameDetail?.Genres?.join(', ')}</p>
+                    </div>
+                    
+                </div>
+            }
+        </>
     )
 };
 

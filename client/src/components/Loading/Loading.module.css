@@ -1,0 +1,14 @@
+
+.h1{
+    color: rgb(12, 11, 11);
+    font-size: 3rem;
+    text-shadow: -5px 2px 3px rgba(70,67,67,0.51);
+    margin-bottom: 4rem;
+}
+
+.div{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
