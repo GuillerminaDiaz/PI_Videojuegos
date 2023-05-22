@@ -5,12 +5,14 @@ import Home from './components/Home/Home';
 import Detail from './components/Detail/Detail';
 import Form from './components/CreateGame/Form';
 import NavBar from './components/NavBar/NavBar';
+import Footer from './components/Footer/Footer';
 
 
-//import { useSelector } from 'react-redux';
+
 
 function App() {
   const location= useLocation();
+  
   
    return (
     <div className="App">
@@ -22,6 +24,9 @@ function App() {
         <Route path='/detail/:idVideogame' element={<Detail/>} />
         <Route path='/createGame' element={<Form/>} />
       </Routes>
+
+      {location.pathname!== '/'  && <Footer/>}
+      
     </div>
   );
 }

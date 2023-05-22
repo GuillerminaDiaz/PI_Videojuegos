@@ -16,7 +16,7 @@ const Home=()=>{
     let numPages= Math.ceil(renderVideogames.length/15);
     
     let viewVideogames=  renderVideogames?.slice(from,to);
-    console.log(renderVideogames);
+    
 
   useEffect(()=>{
     dispatch(getAllGenres())

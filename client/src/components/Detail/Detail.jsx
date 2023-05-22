@@ -21,7 +21,7 @@ const Detail=()=>{
         });
         return setGameDetail({});
     },[idVideogame])
-    console.log(gameDetail)
+    
     return(
         <>
             {Object.entries(gameDetail).length === 0 && <div className={style.divLoad}> <Loading/> </div>}
