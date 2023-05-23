@@ -1,4 +1,3 @@
-//no terminado
 const { allVideogames } = require('../controllers/allVideogames');
 const { getGameById } = require('../controllers/getGameById');
 const { getGameByName } = require('../controllers/getGameByName');

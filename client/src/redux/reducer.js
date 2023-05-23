@@ -68,7 +68,7 @@ const reducer=(state= initialState, action)=>{
                 :videogamesGenre
             }
         case FILTER_ORIGIN:
-            const games= [...state.allVideogames]
+            const games= state.allVideogames
             const videogamesOrigin=  action.payload === 'created'? games.filter(game=> game.created) : games.filter(game=> !game.created)
             console.log(videogamesOrigin);
             return{
@@ -105,9 +105,7 @@ const reducer=(state= initialState, action)=>{
                     allVideogamesCopy.sort((a,b)=> b.rating - a.rating)
             return{
                 ...state,
-                renderVideogames:action.payload === 'no'
-                ? [...state.allVideogames]
-                :sortRate   
+                renderVideogames:sortRate   
             }
        
         default:

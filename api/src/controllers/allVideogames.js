@@ -21,6 +21,7 @@ const dbVideogames= async ()=>{
             platforms:game.platforms,
             image:game.image,
             release_date:game.release_date,
+            rating: game.rating,
             created: game.created,
             Genres: game.Genres.map((genre) => genre.name)
         })

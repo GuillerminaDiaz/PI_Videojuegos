@@ -38,7 +38,7 @@ const Home=()=>{
     };
 
     const handleOrderRating=(event)=>{
-         dispatch(orderRating(event.target.value))
+        event.target.value!== 'no' && dispatch(orderRating(event.target.value))
     };
 
    

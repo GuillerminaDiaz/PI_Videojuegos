@@ -38,7 +38,7 @@ const getGameById = async (idVideogame)=>{
         name: data.name,
         image: data.background_image,
         platforms: data.parent_platforms.map(platform=> platform.platform.name),
-        description: data.description_raw,
+        description: data.description,
         release_date: data.released,
         rating: data.rating,
         created: false,

@@ -33,7 +33,7 @@ const Detail=()=>{
                     
                     <div className={style.divText}>
                     <h1 className={style.h1}>{gameDetail?.name}</h1>
-                    <h4>Description: </h4><p>{gameDetail?.description}</p>
+                    <h4>Description: </h4><div dangerouslySetInnerHTML={{__html: gameDetail?.description}} />
                     <p>Released: {gameDetail?.release_date}</p>
                     <p>Platforms: {gameDetail?.platforms?.join(', ')}</p>
                     <p>Rating: {gameDetail?.rating}</p>

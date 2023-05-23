@@ -1,4 +1,3 @@
-//no terminado
 const { Videogame } = require('../db');
 const { Genre } =require('../db');
 

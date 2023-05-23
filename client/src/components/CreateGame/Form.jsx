@@ -157,7 +157,7 @@ const Form=()=>{
 
            <div className={style.divInputs}>
             <label htmlFor="rating">Rating:</label>
-            <input type="number" name='rating' onChange={handlechange} value={input.rating} placeholder="Rating..." min={0} max={5}/>
+            <input type="number" name='rating' onChange={handlechange} value={input.rating} placeholder="Rating..." min={0} max={5} step='0.01'/>
             { errors.rating && <span>{errors.rating}</span> }
            </div>
 
