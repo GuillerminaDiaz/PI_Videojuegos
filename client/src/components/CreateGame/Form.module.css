@@ -106,6 +106,8 @@ Form{
 .btnCreate:disabled{
     background-color: #585858;
     color: #383838;
+    scale: 1;
+    cursor: auto;
 }
 
 .title{

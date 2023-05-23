@@ -74,7 +74,7 @@ body {
 	display: grid;
   	grid-template-columns: repeat(2, 1fr);
   	gap: 20px;
-	justify-items: center;
+	justify-items: center; 
   	margin-left: 1rem;
 	margin-top: 3rem;
 	margin-bottom: 3rem;
