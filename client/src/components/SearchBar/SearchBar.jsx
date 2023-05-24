@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { cleanName, searchVideogames } from "../../redux/actions";
+import { cleanName, handleNumberPage, searchVideogames } from "../../redux/actions";
 import style from'./SearchBar.module.css'
 
 const SearchBar=()=>{
@@ -14,7 +14,7 @@ const SearchBar=()=>{
   const onSearch= (name)=>{
     dispatch(cleanName());
     dispatch(searchVideogames(name))
-   
+    dispatch(handleNumberPage(1))
   };
 
     return(
