@@ -1,4 +1,4 @@
-import { ALL_VIDEOGAMES, ALL_GENRES, CLEAN_VIDEOGAMES, NEXT_PAGE, PREV_PAGE, SEARCH_VIDEOGAMES, CLEAN_NAME, FILTER_GENRE, FILTER_ORIGIN, ORDER_NAME, ORDER_RATING, CURRENT_PAGE, } from "./action-types";
+import { ALL_VIDEOGAMES, ALL_GENRES, CLEAN_VIDEOGAMES, NEXT_PAGE, PREV_PAGE, SEARCH_VIDEOGAMES, CLEAN_NAME, FILTER_GENRE, FILTER_ORIGIN, ORDER_NAME, ORDER_RATING, CURRENT_PAGE, CREATE_VIDEOGAME, } from "./action-types";
 import axios from 'axios';
 
 export const allVideogames=()=>{
@@ -60,7 +60,7 @@ export const cleanName=()=>{
 export const createVideogame=(videogame)=>{
     return async (dispatch)=>{
         const {data}= await axios.post('http://localhost:3001/videogames', videogame);
-        return data;
+        return dispatch({type: CREATE_VIDEOGAME, payload: data})
     };
 };
 
