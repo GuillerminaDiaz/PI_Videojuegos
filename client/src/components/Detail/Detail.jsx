@@ -16,7 +16,7 @@ const Detail=()=>{
            if (data.name) {
               setGameDetail(data);
            } else {
-              window.alert('No hay personajes con ese ID');
+              alert('Videogame does not exist');
            }
         });
         return setGameDetail({});
