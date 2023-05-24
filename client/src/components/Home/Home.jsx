@@ -1,6 +1,6 @@
 import style from './Home.module.css'
 import { useEffect } from "react";
-import { allVideogames, cleanVideogames, filterByGenre, filterByOrigin, getAllGenres, orderAlphabetically, orderRating } from "../../redux/actions";
+import { allVideogames, cleanVideogames, filterByGenre, filterByOrigin, getAllGenres, handleNumberPage, orderAlphabetically, orderRating } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import Card from "../Card/Card";
 import Paginate from "../Paginate/Paginate";
@@ -27,10 +27,14 @@ const Home=()=>{
 
     const handleFilterOrigin=(event)=>{
         dispatch(filterByOrigin(event.target.value))
+        dispatch(handleNumberPage(1))
+        
     };
 
     const handleFilterGenre=(event)=>{
         dispatch(filterByGenre(event.target.value))
+        dispatch(handleNumberPage(1))
+        
     }
     
     const handleOrderName=(event)=>{
@@ -65,8 +69,8 @@ const Home=()=>{
                 </select>
                 <select onChange={handleOrderRating}>
                     <option value="no">Order by rating</option>
-                    <option value="A">Lower rating to higher rating</option>
-                    <option value="D">Higher rating to lower rating</option>
+                    <option value="A">Lower to higher</option>
+                    <option value="D">Higher to lower</option>
                 </select>
             </div>
             <div className={style.divCards}>

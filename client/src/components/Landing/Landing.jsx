@@ -1,7 +1,7 @@
 
 import style from './Landing.module.css'
 import { useNavigate } from "react-router-dom";
-//import characters from '../../images/pngimg.com - fortnite_PNG167.png'
+
 const Landing=()=>{
     const navigate= useNavigate();
     return(

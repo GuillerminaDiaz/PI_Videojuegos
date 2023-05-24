@@ -1,4 +1,4 @@
-const { allVideogames, dbVideogames, apiVideogames } = require('./allVideogames');
+const { apiVideogames } = require('./allVideogames');
 const { Op } = require("sequelize");
 const {Videogame}=require('../db');
 const {Genre}=require('../db');
