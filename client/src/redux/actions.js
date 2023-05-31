@@ -1,4 +1,4 @@
-import { ALL_VIDEOGAMES, ALL_GENRES, CLEAN_VIDEOGAMES, NEXT_PAGE, PREV_PAGE, SEARCH_VIDEOGAMES, CLEAN_NAME, FILTER_GENRE, FILTER_ORIGIN, ORDER_NAME, ORDER_RATING, CURRENT_PAGE, CREATE_VIDEOGAME, } from "./action-types";
+import { ALL_VIDEOGAMES, ALL_GENRES, CLEAN_VIDEOGAMES, NEXT_PAGE, PREV_PAGE, SEARCH_VIDEOGAMES, CLEAN_NAME, FILTER_GENRE, FILTER_ORIGIN, ORDER_NAME, ORDER_RATING, CURRENT_PAGE, CREATE_VIDEOGAME} from "./action-types";
 import axios from 'axios';
 
 export const allVideogames=()=>{
@@ -79,5 +79,6 @@ export const orderAlphabetically=(order)=>{
 export const orderRating=(rating)=>{
     return {type: ORDER_RATING, payload: rating}
 };
+
 
 

@@ -48,9 +48,11 @@ Form{
 
 .checkboxes{
     margin-top: 1rem;
-    display: grid;
-  	grid-template-columns: repeat(4, 2.5fr);
-    justify-items: flex-start;
+    display: flex;
+    flex-wrap: wrap;
+    grid-gap: 7px;
+    justify-content: center;
+    
 }
 .checkboxes label input{
     cursor: pointer;

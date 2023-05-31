@@ -13,7 +13,7 @@ const Home=()=>{
     const renderVideogames= useSelector(state=> state.renderVideogames);
     let from= (numPage - 1) * 15;
     let to= numPage *15;
-    let numPages= Math.ceil(renderVideogames.length/15);
+    let numPages= Math.ceil(renderVideogames?.length/15);
     
     let viewVideogames=  renderVideogames?.slice(from,to);
     
@@ -46,6 +46,8 @@ const Home=()=>{
     };
 
    
+
+   
     return(
         <div className={style.background}>
             <div className={style.contentselect}>
@@ -72,6 +74,7 @@ const Home=()=>{
                     <option value="A">Lower to higher</option>
                     <option value="D">Higher to lower</option>
                 </select>
+               
             </div>
             <div className={style.divCards}>
                 {viewVideogames && viewVideogames.map(game=>{

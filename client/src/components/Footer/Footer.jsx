@@ -1,10 +1,10 @@
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate} from "react-router-dom";
 import style from './Footer.module.css';
 
 const Footer=()=>{
     const navigate= useNavigate();
     const location= useLocation();
-
+    
     const handleClick = (event)=>{
         if(location.pathname=== '/createGame') navigate('/home')
         else navigate('/home')

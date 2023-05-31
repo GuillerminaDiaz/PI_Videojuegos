@@ -6,6 +6,8 @@ import Detail from './components/Detail/Detail';
 import Form from './components/CreateGame/Form';
 import NavBar from './components/NavBar/NavBar';
 import Footer from './components/Footer/Footer';
+import DeletedGame from './components/DeletedGame/DeletedGame';
+import UpdateGame from './components/UpdateGame/UpdateGame';
 
 
 
@@ -21,11 +23,15 @@ function App() {
       <Routes>
         <Route path='/' element={<Landing/>}/>
         <Route path='/home' element={<Home/>}/>
-        <Route path='/detail/:idVideogame' element={<Detail/>} />
+        <Route path='/detail/:idVideogame' element={<Detail/>}>
+          <Route path=':deleteGame' element={<DeletedGame/>}></Route>
+        </Route>
         <Route path='/createGame' element={<Form/>} />
+        <Route path='/detail/:idVideogame/updateGame' element={<UpdateGame/>}/>
       </Routes>
 
-      {location.pathname!== '/'  && <Footer/>}
+      { location.pathname!== '/' && <Footer/>}
+      
       
     </div>
   );

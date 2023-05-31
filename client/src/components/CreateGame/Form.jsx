@@ -65,7 +65,8 @@ const Form=()=>{
                 ...checked,
                 [event.target.name]: true
             });
-            setInput({
+         setInput(
+                {
                ...input,
                 genre: [...input.genre, event.target.name]
             });
@@ -129,6 +130,70 @@ const Form=()=>{
         
         
     }
+
+    const handleChangeBoxMassively=(event)=>{
+        if(!checked['MassivelyMultiplayer']){
+            setChecked({
+                ...checked,
+                MassivelyMultiplayer: true
+            });
+         setInput(
+                {
+               ...input,
+                genre: [...input.genre, event.target.name]
+            });
+            setErrors(validate({
+                ...input, 
+                genre: [...input.genre, event.target.name]
+            }))
+        }else{
+            setChecked({
+                ...checked,
+                MassivelyMultiplayer: false
+            });
+            setInput({
+               ...input,
+                genre: input.genre.filter(genre=> genre !==event.target.name)
+            });
+            setErrors(validate(
+                {...input, 
+                genre: input.genre.filter(genre=> genre !==event.target.name)
+            }))
+        }
+        
+    }
+
+    const handleChangeBoxTable=(event)=>{
+        if(!checked['BoardGames']){
+            setChecked({
+                ...checked,
+                BoardGames: true
+            });
+            setInput(
+                {
+            ...input,
+                genre: [...input.genre, event.target.name]
+            });
+            setErrors(validate({
+                ...input, 
+                genre: [...input.genre, event.target.name]
+            }))
+        }else{
+            setChecked({
+                ...checked,
+                BoardGames: false
+            });
+            setInput({
+            ...input,
+                genre: input.genre.filter(genre=> genre !==event.target.name)
+            });
+            setErrors(validate(
+                {...input, 
+                genre: input.genre.filter(genre=> genre !==event.target.name)
+            }))
+        }
+    }
+
     const nameGames= allVideogamesState.map((game)=> game.name.toLowerCase())
     return(
         <form onSubmit={handleSubmit}>
@@ -196,11 +261,11 @@ const Form=()=>{
                 <label htmlFor="Racing"><input name='Racing' type="checkbox" checked={checked.Racing} onChange={handleChangeBox}  />Racing</label>
                 <label htmlFor="Sports"><input name='Sports' type="checkbox" checked={checked.Sports} onChange={handleChangeBox}  />Sports</label>
                 <label htmlFor="Fighting"><input name='Fighting' type="checkbox" checked={checked.Fighting} onChange={handleChangeBox} />Fighting</label>
-                <label htmlFor="BoardGames"><input name='BoardGames' type="checkbox" checked={checked.BoardGames} onChange={handleChangeBox}  />Board Games</label>
+                <label htmlFor="BoardGames"><input name='Board Games' type="checkbox" checked={checked.BoardGames} onChange={handleChangeBoxTable}  />Board Games</label>
                 <label htmlFor="Family"><input name='Family' type="checkbox" checked={checked.Family} onChange={handleChangeBox}  />Family</label>
                 <label htmlFor="Educational"><input name='Educational' type="checkbox" checked={checked.Educational} onChange={handleChangeBox}  />Educational</label>
                 <label htmlFor="Card"><input name='Card' type="checkbox" checked={checked.Card} onChange={handleChangeBox}  />Card</label>
-                <label htmlFor="MassivelyMultiplayer" className={style.xllabel}><input name='MassivelyMultiplayer' type="checkbox" checked={checked.MassivelyMultiplayer} onChange={handleChangeBox}  />Massively Multiplayer</label>
+                <label htmlFor="MassivelyMultiplayer" className={style.xllabel}><input name='Massively Multiplayer' type="checkbox" checked={checked.MassivelyMultiplayer} onChange={ handleChangeBoxMassively}/>Massively Multiplayer</label>
             
             
            </div>

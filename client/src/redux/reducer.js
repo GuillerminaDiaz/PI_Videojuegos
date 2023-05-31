@@ -1,4 +1,4 @@
-import { ALL_VIDEOGAMES, ALL_GENRES, CLEAN_VIDEOGAMES, NEXT_PAGE, PREV_PAGE, SEARCH_VIDEOGAMES, CLEAN_NAME, CREATE_VIDEOGAME, FILTER_GENRE, FILTER_ORIGIN, ORDER_NAME, ORDER_RATING, CURRENT_PAGE, } from "./action-types";
+import { ALL_VIDEOGAMES, ALL_GENRES, CLEAN_VIDEOGAMES, NEXT_PAGE, PREV_PAGE, SEARCH_VIDEOGAMES, CLEAN_NAME, CREATE_VIDEOGAME, FILTER_GENRE, FILTER_ORIGIN, ORDER_NAME, ORDER_RATING, CURRENT_PAGE,  } from "./action-types";
 
 const initialState={
     numPage:1,
@@ -58,8 +58,7 @@ const reducer=(state= initialState, action)=>{
             }
         case FILTER_GENRE:
             const videogames= [...state.allVideogames]
-            
-            const videogamesGenre=  videogames.filter(game=> game.Genres.includes(action.payload))
+            let videogamesGenre= videogames.filter(game=> game.Genres.includes(action.payload))
             return{
                 ...state,
                 renderVideogames:
@@ -107,7 +106,7 @@ const reducer=(state= initialState, action)=>{
                 ...state,
                 renderVideogames:sortRate   
             }
-
+       
 
         default:
             return {...state};

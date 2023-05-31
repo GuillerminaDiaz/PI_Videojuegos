@@ -1,8 +1,9 @@
 const { allVideogames } = require('../controllers/allVideogames');
 const { getGameById } = require('../controllers/getGameById');
 const { getGameByName } = require('../controllers/getGameByName');
-const { postNewVideogame }= require('../controllers/postNewVideogame')
-
+const { postNewVideogame }= require('../controllers/postNewVideogame');
+const {deleteBdGame}= require('../controllers/deleteBdGame');
+const {updatedVideogame}= require('../controllers/updatedVideogame')
 const getVideogames= async (req, res)=>{
     try {
         const { search }= req.query;
@@ -41,8 +42,34 @@ const postVideogame= async (req, res)=>{
     }
 };
 
+const deleteVideogame= async (req, res)=>{
+    try {
+        const {idVideogame}= req.params;
+        const deleted= await deleteBdGame(idVideogame);
+        return res.status(200).json(deleted);
+    } catch (error) {
+        return res.status(500).json({ error: error.message})
+    }
+};
+
+const updateVideogame= async (req, res)=>{
+    try {
+        const {idVideogame}= req.params;
+        const {description, platforms, image, rating}= req.body;
+        console.log(idVideogame, description, platforms, image, rating);
+        if(!idVideogame) throw Error('Id is necessary');
+        
+        const videogameChanged= await updatedVideogame(idVideogame, description, platforms, image, rating);
+        return res.status(200).json(videogameChanged);
+    } catch (error) {
+        return res.status(500).json({ error: error.message});
+    }
+};
+
 module.exports= {
     getVideogames,
     getVideogameById,
-    postVideogame
+    postVideogame,
+    deleteVideogame,
+    updateVideogame
 }

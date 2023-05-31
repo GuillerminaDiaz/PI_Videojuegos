@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { NavLink, Outlet, useParams } from "react-router-dom";
 import axios from 'axios';
 import style from './Detail.module.css'
 import Loading from '../Loading/Loading'
@@ -38,8 +38,14 @@ const Detail=()=>{
                     <p>Platforms: {gameDetail?.platforms?.join(', ')}</p>
                     <p>Rating: {gameDetail?.rating}</p>
                     <p>Genres: {gameDetail?.Genres?.join(', ')}</p>
-                    </div>
+                    {isNaN(idVideogame) && <div className={style.divBtnsCreated}>  
+                        <button className={style.btnDelete}><NavLink to='deleteGame' className={style.navLinks}>Delete Videogame</NavLink></button>
+                        <button className={style.btnUpdate}><NavLink to={`/detail/${idVideogame}/updateGame`} className={style.navLinks}>Update Videogame</NavLink></button>
+                        </div>
+                    }
                     
+                    </div>
+                    <Outlet idVideogame={idVideogame}/>
                 </div>
             }
         </>

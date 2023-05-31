@@ -1,0 +1,59 @@
+.divInputs{
+    color: black;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: large;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-end;
+
+}
+
+.divInputs input, textarea{
+    border-radius: 5px;
+    border: 2px rgb(61, 61, 61);
+    width: 20rem;
+    height: 1.5rem;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: medium;
+}
+
+.divInputs textarea{
+    height: 4rem;
+}
+
+.divInputs label{
+    font-size: medium;
+}
+
+.btnUpdt{
+    border-radius: 5px;
+    height: 2rem;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+    border: 1px solid rgb(1, 106, 138);
+    background-color: rgba(22, 158, 176, 0.753);
+    color: rgb(177, 202, 225);
+    cursor: pointer;
+    scale: 1.1;
+}
+
+.btnUpdt:disabled{
+    background-color: rgba(0, 115, 131, 0.753);
+    color: rgb(94, 128, 157);
+    
+}
+
+.btnBack{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+    border: 1px solid rgb(8, 70, 8);
+    background-color: rgba(29, 99, 29, 0.838);
+    height: 2rem;
+    border-radius: 5px;
+    color: rgb(3, 48, 3);
+}
+.btnBack:hover{
+    cursor: pointer;
+}
