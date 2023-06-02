@@ -7,7 +7,7 @@ const DeletedGame=()=>{
     console.log(idVideogame)
     const navigate= useNavigate();
     const handleClick=(idVideogame)=>{
-        axios.delete(`http://localhost:3001/videogames/${idVideogame}`)
+        axios.delete(`https://server-videogames-05mp.onrender.com/videogames/${idVideogame}`)
         .then(response => response.data)
         .then(( data ) => {
            if (data.name) {

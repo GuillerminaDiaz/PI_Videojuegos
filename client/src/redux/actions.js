@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export const allVideogames=()=>{
     return async (dispatch) => {
-            const { data }= await axios('http://localhost:3001/videogames');
+            const { data }= await axios('https://server-videogames-05mp.onrender.com/videogames');
             
             return dispatch({
                 type: ALL_VIDEOGAMES,
@@ -15,7 +15,7 @@ export const allVideogames=()=>{
 
 export const getAllGenres=()=>{
     return async (dispatch)=>{
-        const {data}= await axios('http://localhost:3001/genres');
+        const {data}= await axios('https://server-videogames-05mp.onrender.com/genres');
         return dispatch({
             type: ALL_GENRES,
             payload: data
@@ -42,7 +42,7 @@ export const handleNumberPage=(pageNum)=>{
 export const searchVideogames=(name)=>{
     return async (dispatch)=>{
     try {
-         const {data}= await axios(`http://localhost:3001/videogames?search=${name}`);
+         const {data}= await axios(`https://server-videogames-05mp.onrender.com/videogames?search=${name}`);
         return dispatch({
             type: SEARCH_VIDEOGAMES,
             payload: data
@@ -59,7 +59,7 @@ export const cleanName=()=>{
 
 export const createVideogame=(videogame)=>{
     return async (dispatch)=>{
-        const {data}= await axios.post('http://localhost:3001/videogames', videogame);
+        const {data}= await axios.post('https://server-videogames-05mp.onrender.com/videogames', videogame);
         return dispatch({type: CREATE_VIDEOGAME, payload: data})
     };
 };

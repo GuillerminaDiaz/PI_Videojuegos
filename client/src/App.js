@@ -8,8 +8,10 @@ import NavBar from './components/NavBar/NavBar';
 import Footer from './components/Footer/Footer';
 import DeletedGame from './components/DeletedGame/DeletedGame';
 import UpdateGame from './components/UpdateGame/UpdateGame';
+import axios from 'axios';
 
-
+//axios.defaults.baseURL= 'http://localhost:3001';
+//axios.defaults.baseURL= 'https://server-videogames-05mp.onrender.com';
 
 
 function App() {

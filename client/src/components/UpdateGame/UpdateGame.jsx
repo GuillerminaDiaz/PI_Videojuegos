@@ -24,7 +24,7 @@ const UpdateGame=()=>{
 
     const handleSubmit=(event)=>{
         event.preventDefault();
-        axios.put(`http://localhost:3001/videogames/${idVideogame}`, newInput)
+        axios.put(`https://server-videogames-05mp.onrender.com/videogames/${idVideogame}`, newInput)
         .then(response=> response.data)
         .then((data)=>{
             if(data.name){

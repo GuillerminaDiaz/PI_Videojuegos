@@ -10,7 +10,7 @@ const Detail=()=>{
     const [gameDetail, setGameDetail]= useState({});
 
     useEffect(()=>{
-        axios(`http://localhost:3001/videogames/${idVideogame}`)
+        axios(`https://server-videogames-05mp.onrender.com/videogames/${idVideogame}`)
         .then(response => response.data)
         .then(( data ) => {
            if (data.name) {
